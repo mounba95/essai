@@ -1,0 +1,140 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1 class="m-0 text-dark">Visite</h1>
+                </div><!-- /.col -->
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="accueil">Accueil</a></li>
+                        <li class="breadcrumb-item active">Visite</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /.card-header -->
+    <!--suppress ALL -->
+    <section class="content">
+        <div class="card card-default">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Liste des toutes les visites</h3>
+                    </div>
+                    <div class="card-body p-0">
+                        {% for message in app.flashes('register') %}
+                            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                                {{ message }}
+                            </div>
+                        {% endfor %}
+                        {% for message in app.flashes('suppression') %}
+                            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                                {{ message }}
+                            </div>
+                        {% endfor %}
+                        {% for message in app.flashes('debut') %}
+                        <div class="alert alert-success alert-dismissible fade show" role="alert">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                            {{ message }}
+                        </div>
+                        {% endfor %}
+                        {% for message in app.flashes('fin') %}
+                        <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        {{ message }}
+                            </div>
+                        {% endfor %}
+                        {% for message in app.flashes('notice') %}
+                            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                                {{ message }}
+                            </div>
+                        {% endfor %}
+                        <table id="table_visite" class="table table-bordered table-striped">
+                            <thead>
+                            <tr>
+                                <th>Id</th>
+                                <th class="text-center">Type</th>
+                                <th class="text-center">Debut</th>
+                                <th class="text-center">Fin</th>
+                                <th class="text-center">Céer Par</th>
+                                <th class="text-center">Ferme Par</th>
+                                <th class="text-center">Service</th>
+                                <th class="text-center">Visiteur</th>
+                                <th class="text-center">Motif</th>
+                                <th class="text-center">Personnel</th>
+                                <th class="text-center">Statue</th>
+                            
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for visite in visites %}
+                                <tr>
+                                    <td>{{ visite.id }}</td>
+                                    <td>
+                                            {% if visite.typeVisite == 1 %}
+                                                Professionel
+                                            {% else %}
+                                                Personnel
+                                            {% endif %}
+                                    </td>
+                                    <td>{{ visite.entrer | date('Y-m-d  H:i:s') }}</td>
+                                    <td>{{ visite.sortie | date('Y-m-d  H:i:s') }}</td>
+                                    <td>{{ visite.crerpar }}</td>
+                                    <td>{{ visite.fermerpar }}</td>
+                                    <td>{{ visite.services }}</td>
+                                    <td>{{ visite.visiteurs }}</td>
+                                    <td>{{ visite.motif }}</td>
+                                    <td>{{ visite.users }}</td>
+                                    <td>
+                                        {% if visite.statue == 1 %}
+                                                <span class="badge bg-success">Encour</span>
+                                        
+                                        {% else %}
+
+                                            <span class="badge bg-danger">Terminer</span>
+                                        
+                                        {% endif %}
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- /.card-body -->
+                </div>
+            </div>
+        </div>
+        <!-- /.card -->
+    </section>
+    <div class="modal fade" id="myModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <h4><b>Êtes-vous sûr de vouloir supprimer cette visite ?</b></h4>
+                    <p>Cette action peut être annulée</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+                    <a  href="" type="button" class="btn btn-danger" id="delRef"><i class="fa fa-trash" aria-hidden="true"></i>Supprimer</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

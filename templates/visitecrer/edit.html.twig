@@ -1,0 +1,214 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1 class="m-0 text-dark">Visite</h1>
+                </div><!-- /.col -->
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="/accueil">Accueil</a></li>
+                        <li class="breadcrumb-item active">Visite</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /.card-header -->
+    <!--suppress ALL -->
+    <section class="content">
+        <div class="card card-default">
+            <div class="card-header">
+                <h3 class="card-title">Formulaire de modification d'une visite</h3>
+                <div class="card-tools">
+                    <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="card-body">
+                {{ form_start(form) }}
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="col-12 col-sm-10">
+                            <div class="form-group">
+                                <label>Visiteur <span style="color: red;">*</span> :</label>
+                                <div class="select2-purple">
+                                    {{ form_widget(form.visiteurs, {'attr': {'class':'form-control select2 ','placeholder':'Saisir le nom de l\'utilisateur', 'required':true} }) }}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-sm-10">
+                            <div class="form-group">
+                                <label>Motif <span style="color: red;">*</span> :</label>
+                                <div class="select2-purple">
+                                    {{ form_widget(form.motif,{'attr': {'class':'form-control ','placeholder':'Saisir le prenom de l\'utilisateur', 'required':true} }) }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="col-12 col-sm-10">
+                            <div class="form-group">
+                                <label>Type de visite <span style="color: red;">*</span> :</label>
+                                <div class="select2-purple">
+                                    {{ form_widget(form.typeVisite, {'attr': {'class':'form-control ','placeholder':'Saisir le type de visite', 'required':true} }) }}
+                                </div>
+                            </div>
+                        </div> 
+                        <br>
+                        <div class="col-12 col-sm-10">
+                            <div class="form-group">
+                                <label>Liste des personnel <span style="color: red;">*</span> :</label>
+                                        <div class="select2-purple">
+                                    {{ form_widget(form.users,{'attr': {'class':'form-control select2','placeholder':'Service', 'required':true} }) }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="col-12 col-sm-10">
+                            <div class="form-group">
+                            <label>Liste des service <span style="color: red;">*</span> :</label>
+                                <div class="select2-purple">
+                                    {{ form_widget(form.services, {'attr': {'class':'form-control select2','placeholder':'Service', 'required':true} }) }}
+                                </div>
+                            </div>
+                        </div>
+                        <br>
+                            <br>
+                            <button type="submit" class="btn btn-primary ">Modifier</button>
+                            <a href="{{ path('liste_crer') }}">
+                            <button type="button" class="btn btn-danger ">Annuler</button>
+                            </a>
+                    
+                    </div>
+                </div>
+                {{ form_end(form) }}
+            </div>
+        </div>                    <!-- /.row -->
+                    <!-- /.row -->
+                <!-- /.card-body -->
+                <!-- Default box -->
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Liste des visites encour</h3>
+                    </div>
+                    <div class="card-body p-0">
+                        {% for message in app.flashes('register') %}
+                            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                                {{ message }}
+                            </div>
+                        {% endfor %}
+                        {% for message in app.flashes('suppression') %}
+                            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                                {{ message }}
+                            </div>
+                        {% endfor %}
+                        {% for message in app.flashes('debut') %}
+                        <div class="alert alert-success alert-dismissible fade show" role="alert">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                            {{ message }}
+                        </div>
+                        {% endfor %}
+                        {% for message in app.flashes('visiteExiste') %}
+                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                            {{ message }}
+                        </div>
+                        {% endfor %}
+            
+                        {% for message in app.flashes('fin') %}
+                        <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        {{ message }}
+                            </div>
+                        {% endfor %}
+                        {% for message in app.flashes('notice') %}
+                            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                                {{ message }}
+                            </div>
+                        {% endfor %}
+                        <table id="table_crer" class="table table-bordered table-striped">
+                            <thead>
+                            <tr>
+                                <th>Id</th>
+                                <th class="text-center">Type</th>
+                                <th class="text-center">Debut</th>
+                                <th class="text-center">Céer</th>
+                                <th class="text-center">Liste des sevices</th>
+                                <th class="text-center">Visiteur</th>
+                                <th class="text-center">Motif</th>
+                                <th class="text-center">Personnel</th>
+                                <th class="text-center">Statue</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for visite in visites %}
+                                <tr>
+                                    <td>{{ visite.id }}</td>
+                                    <td>
+                                            {% if visite.typeVisite == 1 %}
+                                                Professionel
+                                            {% else %}
+                                                Personnel
+                                            {% endif %}
+                                    </td>
+                                    <td>{{ visite.entrer | date('Y-m-d  H:i:s') }}</td>
+                                    <td>{{ visite.crerpar }}</td>
+                                    <td>{{ visite.services }}</td>
+                                    <td>{{ visite.visiteurs }}</td>
+                                    <td>{{ visite.motif }}</td>
+                                    <td>{{ visite.users }}</td>
+                                    <td>
+                                        {% if visite.statue == 1 %}
+                                                <span class="badge bg-success">Encour</span>
+                                        
+                                        {% else %}
+
+                                            <span class="badge bg-danger">Terminer</span>
+                                        {% endif %}
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- /.card-body -->
+                </div>
+            </div>
+        </div>
+        <!-- /.card -->
+    </section>
+    <div class="modal fade" id="myModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <h4><b>Êtes-vous sûr de vouloir supprimer cette visite ?</b></h4>
+                    <p>Cette action peut être annulée</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+                    <a  href="" type="button" class="btn btn-danger" id="delRef"><i class="fa fa-trash" aria-hidden="true"></i>Supprimer</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

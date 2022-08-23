@@ -1,0 +1,56 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-lg-3 col-6">
+            <!-- small box -->
+      <div class="small-box bg-info">
+        <div class="inner">
+          <h3>{{ render(controller('App\\Controller\\VisiteController::getvisite')) }}</h3>
+            <p>Nombre total des visites</p>
+        </div>
+        <div class="icon">
+          <i class="	fa fa-id-badge"></i>
+        </div>
+      </div>
+    </div>
+          <!-- ./col -->
+    <div class="col-lg-3 col-6">
+            <!-- small box -->
+      <div class="small-box bg-warning">
+        <div class="inner">
+          <h3>{{ render(controller('App\\Controller\\VisiteurFormeTypeController::getUserByEncour')) }}</h3>
+            <p>Nombre des visiteurs</p>
+        </div>
+        <div class="icon">
+          <i class="fas fa-user-plus"></i>
+        </div>
+      </div>
+    </div>
+          <!-- ./col -->
+    <div class="col-lg-3 col-6">
+            <!-- small box -->
+      <div class="small-box bg-primary">
+        <div class="inner">
+          <h3>{{ render(controller('App\\Controller\\VisiteController::getVisiteJour')) }}</h3>      
+            <p>Nombre des visites par jour</p>
+        </div>
+        <div class="icon">
+          <i class="fa fa-users"></i>
+        </div>
+      </div>
+    </div>
+          <!-- ./col -->
+    <div class="col-lg-3 col-6">
+            <!-- small box -->
+      <div class="small-box bg-success">
+        <div class="inner">
+          <h3>{{ render(controller('App\\Controller\\VisiteController::getVisiteEncour')) }}</h3> 
+            <p>Les visites encour</p>
+        </div>
+        <div class="icon">
+          <i class="fa fa-archive"></i>
+        </div>
+      </div>
+    </div>
+          <!-- ./col -->
+  </div>
+</div>

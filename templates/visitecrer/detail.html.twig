@@ -1,0 +1,144 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1 class="m-0 text-dark">Detail de la visite</h1>
+                </div><!-- /.col -->
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="/accueil">Accueil</a></li>
+                        <li class="breadcrumb-item active">Detail de la visite</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /.card-header -->
+    <!--suppress ALL -->
+    <section class="content">
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-header">
+                       <div class="callout callout-info">
+                        <h5><i class="fas fa-info"></i> Note:</h5>
+                        Cet tableau détaille les information sur la visite.
+                    </div>
+                        <div class="float-right">
+                    <a href="{{ path('liste_crer',{'id':visite.id}) }}" onclick="javascript:history.back();"  class="btn btn-success ">liste des visites crée</a> 
+                </div>
+                    </div>
+                    <div class="card-body p-0">
+                        {% for message in app.flashes('register') %}
+                            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                                {{ message }}
+                            </div>
+                        {% endfor %}
+                        {% for message in app.flashes('suppression') %}
+                            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                                {{ message }}
+                            </div>
+                        {% endfor %}
+                        {% for message in app.flashes('debut') %}
+                        <div class="alert alert-success alert-dismissible fade show" role="alert">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                            {{ message }}
+                        </div>
+                        {% endfor %}
+                        {% for message in app.flashes('visiteExiste') %}
+                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                            {{ message }}
+                        </div>
+                        {% endfor %}
+            
+                        {% for message in app.flashes('fin') %}
+                        <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        {{ message }}
+                            </div>
+                        {% endfor %}
+                        {% for message in app.flashes('notice') %}
+                            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                                {{ message }}
+                            </div>
+                        {% endfor %}
+                    <div class="col-md-2"></div>
+                        <div class="col-md-9">
+                        <table id="table_crer" class="table table-bordered table-striped">
+                                <tr>
+                                    <th>Type de la visite</th>   
+                                    <td>
+                                        {% if visite.typeVisite == 1 %}
+                                            Professionel
+                                        {% else %}
+                                            Personnel
+                                        {% endif %}
+                                    </td>
+                               
+                                <th>Debut de la visite</th>   <td>{{ visite.entrer  |date('d-m-Y H:i:s')}}</td>
+                                </tr>
+                                <tr>   
+                                    {% if visite.typeVisite == 2 %} 
+                                <th>Personnel visiter</th>     <td>{{ visite.users }}</td> 
+                                        {% else %} 
+                                <th>Services visité</th>    <td>{{ visite.services }}</td>
+                                    {% endif %}
+                               
+                                <th>Visiteur</th>   <td>{{ visite.visiteurs }}</td>
+                                </tr>
+                                <tr>  
+                                <th>Motif de la visite</th>    <td>{{ visite.motif }}</td>
+                               
+                                <th>Créé par</th>   <td>{{ visite.crerPar }}</td>
+                                </tr>
+                            <tr>
+                            <th></th><td></td>
+                            <th></th>
+                            <td>
+                                <a href="{{ path('fin_visite',{'id':visite.id}) }}" id="delBtn"  data-toggle="modal">
+                            <button type="button" class="btn btn-danger btn-rounded"><i class="fa fa-power-off"></i>Mettre fin a la visite</button>
+                              </a>
+                            </td>
+                            </tr>
+                            </table>
+                        </div>
+                    </div>
+                    <!-- /.card-body -->
+                </div>
+            </div>
+        </div>
+        <!-- /.card -->
+    </section>
+    <div class="modal fade" id="myModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <h4><b>Êtes-vous sûr de vouloir mettre fin à cette visite ?</b></h4>
+                    <p>Cette action peut être annulée</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+                    <a  href="" type="button" class="btn btn-danger" id="delRef"><i class="fa fa-power-off" aria-hidden="true"></i>Oui</a>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,233 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1 class="m-0 text-dark">Visite</h1>
+                </div><!-- /.col -->
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="/accueil">Accueil</a></li>
+                        <li class="breadcrumb-item active">Visite</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /.card-header -->
+    <!--suppress ALL -->
+    <section class="content">
+        <div class="card card-default">
+            <div class="card-header">
+                <h3 class="card-title">Formulaire d'ajout d'une visite</h3>
+                <div class="card-tools">
+                    <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="card-body">
+                {{ form_start(form) }}
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="col-lg-12 col-md-6 col-sm-6 col-xs-6">
+                            {{ form_label(form.entrer, "Date Debut", {'label_attr': {'class': 'form-label'}}) }}
+                                <div class="form-group  form-float">
+                                    <div class="form-line">
+                                        {{ form_widget(form.entrer, {'attr': {'class': 'form-control', 'placeholder':'Debut'} }) }}  {# Affichage des erreurs pour ce champ précis. #} {{ form_errors(form.entrer)
+                                        }}
+                                    </div>
+                                </div>
+                        </div>
+                        <div class="col-lg-12 col-md-6 col-sm-6 col-xs-6">
+                            {{ form_label(form.sortie, "Date Fin", {'label_attr': {'class': 'form-label'}}) }}
+                                <div class="form-group  form-float">
+                                    <div class="form-line">
+                                        {{ form_widget(form.sortie, {'attr': {'class': 'form-control', 'placeholder':'Fin' } }) }}  {# Affichage des erreurs pour ce champ précis. #} {{ form_errors(form.sortie)
+                                        }}
+                                    </div>
+                                </div>
+                        </div>
+                {#  <div class="col-12 col-sm-10">
+                    <div class="form-group">
+                        <label>Date debut visite :</label>
+                            <div class="input-group date" id="reservationdate" data-target-input="nearest">
+                            {{ form_widget(form.entrer,{'attr': {'placeholder':'Saisir l\'utilisateur '} }) }}
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-sm-10">
+                            <div class="form-group">
+                                <label>Date fin visite :</label>
+                                    <div class="input-group date" id="reservationdate" data-target-input="nearest">
+                                    {{ form_widget(form.sortie,{'attr': {'placeholder':'Saisir l\'utilisateur '} }) }}
+                                </div>
+                            </div>
+                        </div> #}
+                    </div>
+                    <div class="col-md-4">
+                        <div class="col-12 col-sm-12">
+                            <div class="form-group">
+                            <label>Visiteur:</label>
+                                <div class="select2-purple">
+                                    {{ form_widget(form.visiteurs, {'attr': {'class':'form-control select2 ','placeholder':'Saisir le nom de visiteur' } }) }}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-sm-12">
+                            <div class="form-group">
+                                <label>Liste des personnel :</label>
+                                <div class="select2-purple">
+                                    {{ form_widget(form.users,{'attr': {'class':'form-control select2 ','placeholder':'Saisir l\'utilisateur '} }) }}
+                                </div>
+                            </div>
+                        </div>
+                    <div class="col-12 col-sm-12">
+                        <div class="form-group">
+                        <label>Liste des service  :</label>
+                            <div class="select2-purple">
+                                {{ form_widget(form.services, {'attr': {'class':'form-control select2 ','placeholder':'Saisir le service '} }) }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                    <div class="col-md-4">
+                        <div class="col-12 col-sm-12">
+                            <div class="form-group">
+                            <label>Créer par :</label>
+                                <div class="select2-purple">
+                                    {{ form_widget(form.crerpar, {'attr': {'class':'form-control select2 ','placeholder':'Saisir le nom de visiteur'} }) }}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-sm-12">
+                            <div class="form-group">
+                            <label>Fermer par :</label>
+                                <div class="select2-purple">
+                                    {{ form_widget(form.fermerpar, {'attr': {'class':'form-control select2 ','placeholder':'Saisir le nom de visiteur'} }) }}
+                                </div>
+                            </div>
+                        </div>
+                        <br> 
+                        <button type="submit" class="btn btn-primary ">Valider</button>
+                    <a href="{{ path('visiteparfiltrage') }}">
+                    <button type="button" class="btn btn-danger ">Annuler</button>
+                    </a>
+                    </div>
+                </div>
+                {{ form_end(form) }}
+            </div>
+        </div>
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-header">
+                        <h3 class="card-title">Liste des visites </h3>
+                    </div>
+                    <div class="card-body p-0">
+                        {% for message in app.flashes('register') %}
+                            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                                {{ message }}
+                            </div>
+                        {% endfor %}
+                        {% for message in app.flashes('suppression') %}
+                            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                                {{ message }}
+                            </div>
+                        {% endfor %}
+                        {% for message in app.flashes('debut') %}
+                        <div class="alert alert-success alert-dismissible fade show" role="alert">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                            {{ message }}
+                        </div>
+                        {% endfor %}
+                        {% for message in app.flashes('visiteExiste') %}
+                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                            {{ message }}
+                        </div>
+                        {% endfor %}
+                        {% for message in app.flashes('fin') %}
+                        <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        {{ message }}
+                            </div>
+                        {% endfor %}
+                        {% for message in app.flashes('notice') %}
+                            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                                {{ message }}
+                            </div>
+                        {% endfor %}
+                        <table id="table_crer" class="table table-bordered table-striped">
+                            <thead>
+                            <tr>
+                                <th>Id</th>
+                                <th class="text-center">Date debut de visite</th>
+                                <th class="text-center">Date fin de visite</th>
+                                <th class="text-center">Céer par</th>
+                                <th class="text-center">Fermer par</th>
+                                <th class="text-center">Liste des sevices</th>
+                                <th class="text-center">Visiteur</th>
+                                <th class="text-center">Liste des peronnel</th>
+                                <th class="text-center">Statue</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for visite in visites %}
+                                <tr>
+                                    <td>{{ visite.id }}</td>
+                                    <td>{{ visite.entrer | date('Y-m-d  H:i:s') }}</td>
+                                    <td>{{ visite.sortie | date('Y-m-d  H:i:s') }}</td>
+                                    <td>{{ visite.crerpar }}</td>
+                                    <td>{{ visite.fermerpar }}</td>
+                                    <td>{{ visite.services }}</td>
+                                    <td>{{ visite.visiteurs }}</td>
+                                    <td>{{ visite.users }}</td>
+                                    <td>
+                                        {% if visite.statue == 1 %}
+                                                <span class="badge bg-success">Encour</span>
+                                        {% else %}
+                                            <span class="badge bg-danger">Terminer</span>
+                                        {% endif %}
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- /.card-body -->
+                </div>
+            </div>
+        </div>
+        <!-- /.card -->
+    </section>
+    <div class="modal fade" id="myModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <h4><b>Êtes-vous sûr de vouloir supprimer cette visite ?</b></h4>
+                    <p>Cette action peut être annulée</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+                    <a  href="" type="button" class="btn btn-danger" id="delRef"><i class="fa fa-trash" aria-hidden="true"></i>Supprimer</a>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
