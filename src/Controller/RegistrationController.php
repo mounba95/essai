@@ -64,8 +64,26 @@ class RegistrationController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
+            $image = $form->get('image')->getData();
+            if ($image) {
+                $originalFile = pathinfo($image->getClientOriginalName(), PATHINFO_FILENAME);
+                // this is needed to safely include the file name as part of the URL
+                $safeImage = $slugger->slug($originalFile);
+                $newFilename = $safeFilename.'-'.uniqid().'.'.$image->guessExtension();
+
+                try {
+                    $image->move(
+                        $this->getParameter('image_directory'),
+                        $newFilename
+                    );
+                } catch (FileException $e) {
+                    // ... handle exception if something happens during file upload
+                }
+            }
             //dd($user);
             // encode the plain password
+            $user->setImage($newFilename);
             $user->setPassword(
                 $passwordEncoder->encodePassword(
                     $user,
@@ -149,7 +167,7 @@ class RegistrationController extends AbstractController
                 'register',
                 "Modification effectué avec succès !!!"
             );
-            $user = $repo->findOneById($id);
+            $user = $repo->find($id);
             $form = $this->createForm(ModificationUserFormType::class, $user);
             return $this->render('registration/profil.html.twig', ['form' => $form->createView(),
                 'user' => $user
@@ -171,7 +189,7 @@ class RegistrationController extends AbstractController
         $users = $repo->findAll();
 
         //add user
-        $user = $repo->findOneById($id);
+        $user = $repo->find($id);
         $form = $this->createForm(ModificationUserPWFormType::class, $user);
         $form->handleRequest($request);
 
