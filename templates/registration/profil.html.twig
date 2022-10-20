@@ -110,7 +110,7 @@
                                             <div class="form-group">
                                                 <label>Nom <span style="color: red;">*</span> :</label>
                                                 <div class="select2-purple">
-                                                    {{ form_widget(form.nomUser, {'attr': {'class':'form-control ','placeholder':'Saisir le nom de l utilisateur', 'required':true} }) }}
+                                                    {{ form_widget(form.nomUser, {'attr': {'class':'form-control ','required':true} }) }}
                                                 </div>
                                             </div>
                                             <!-- /.form-group -->
@@ -120,7 +120,7 @@
                                             <div class="form-group">
                                                 <label>Prenom <span style="color: red;">*</span> :</label>
                                                 <div class="select2-purple">
-                                                    {{ form_widget(form.prenomUser,{'attr': {'class':'form-control ','placeholder':'Saisir le prenom de l utilisateur', 'required':true} }) }}
+                                                    {{ form_widget(form.prenomUser,{'attr': {'class':'form-control ', 'required':true} }) }}
                                                 </div>
                                             </div>
                                         </div>
@@ -128,7 +128,7 @@
                                             <div class="form-group">
                                                 <label>Nom d'utilisateur <span style="color: red;">*</span> :</label>
                                                 <div class="select2-purple">
-                                                    {{ form_widget(form.nomUtilisateur, {'attr': {'class':'form-control ','placeholder':'Saisir le mail de l utilisateur', 'required':true} }) }}
+                                                    {{ form_widget(form.nomUtilisateur, {'attr': {'class':'form-control ', 'required':true} }) }}
                                                 </div>
                                             </div>
 
@@ -143,13 +143,13 @@
                                             <div class="form-group">
                                                 <label>Telephone <span style="color: red;">*</span> :</label>
                                                 <div class="select2-purple">
-                                                    {{ form_widget(form.telUser, {'attr': {'class':'form-control ','placeholder':'Ssaisir le numéro de l utilisateur', 'required':true} }) }}
+                                                    {{ form_widget(form.telUser, {'attr': {'class':'form-control ', 'required':true} }) }}
                                                 </div>
                                             </div>
                                             <div class="form-group">
                                                 <div class="select2-purple">
                                                     <label>Mot de passe<span style="color: red;">*</span> </label>
-                                                    {{ form_widget(form.plainPassword, {'attr':{'class':'form-control ','placeholder':'Mot de passe'} }) }}
+                                                    {{ form_widget(form.plainPassword, {'attr':{'class':'form-control '} }) }}
                                                 </div>
                                             </div>
                                             <!-- /.form-group -->

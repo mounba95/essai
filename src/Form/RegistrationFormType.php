@@ -20,7 +20,6 @@ class RegistrationFormType extends AbstractType
     {
         $builder
             ->add('nomUser')
-            ->add('image',FileType::class)
             ->add('prenomUser')
             ->add('nomUtilisateur')
             ->add('telUser')

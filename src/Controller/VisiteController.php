@@ -211,7 +211,9 @@ public function detailvisitel($id): Response
 {
     $em = $this->getDoctrine()->getManager();
     $visite = $em->getRepository(Visite::class)->find($id);
-    return $this->render('visitecrer/detail.html.twig',['visite' => $visite]);
+    return $this->render('visitecrer/detail.html.twig',[
+        'visite' => $visite
+    ]);
 }
 
 
