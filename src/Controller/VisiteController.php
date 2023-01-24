@@ -301,7 +301,7 @@ public function detailvisitel($id): Response
             'fin',
             " La visite a été fermer avec succer!!!"
         );
-        return $this->redirectToRoute('liste_fermer');
+        return $this->redirectToRoute('liste_crer');
     }
 
 

@@ -72,9 +72,6 @@
             <!-- /.card-body -->
             <!-- Default box -->
             <div class="card">
-                <div class="card-header">
-                    <h3 class="card-title">Liste des service</h3>
-                </div>
                 <div class="card-body p-0">
                     {% for message in app.flashes('register') %}
                         <div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -116,31 +113,9 @@
                             {{ message }}
                         </div>
                     {% endfor %}
-                    <table id="table_service" class="table table-bordered table-striped">
-                        <thead>
-                        <tr>
-                            <th>Id</th>
-                            <th class="text-center">Nom</th>
-                            <th class="text-center">Description</th>
-                        
-                        </tr>
-                        </thead>
-                        <tbody>
-                        {% for service in services %}
-                            <tr>
-                                <td>{{ service.id }}</td>
-                                <td>{{ service.nomservice }}</td>
-                                <td>{{ service.description }}</td>
-                                
-                            </tr>
-                        {% endfor %}
-                        </tbody>
-                    </table>
                 </div>
                 <!-- /.card-body -->
             </div>
-        </div>
-        <!-- /.card -->
     </section>
     <div class="modal fade" id="myModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">

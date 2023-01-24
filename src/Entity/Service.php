@@ -40,10 +40,16 @@ class Service
      */
     private $users;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Rdv::class, mappedBy="services")
+     */
+    private $rdvs;
+
     public function __construct()
     {
         $this->visites = new ArrayCollection();
         $this->users = new ArrayCollection();
+        $this->rdvs = new ArrayCollection();
     }
   
 
@@ -146,6 +152,36 @@ class Service
             // set the owning side to null (unless already changed)
             if ($user->getServices() === $this) {
                 $user->setServices(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Rdv[]
+     */
+    public function getRdvs(): Collection
+    {
+        return $this->rdvs;
+    }
+
+    public function addRdv(Rdv $rdv): self
+    {
+        if (!$this->rdvs->contains($rdv)) {
+            $this->rdvs[] = $rdv;
+            $rdv->setServices($this);
+        }
+
+        return $this;
+    }
+
+    public function removeRdv(Rdv $rdv): self
+    {
+        if ($this->rdvs->removeElement($rdv)) {
+            // set the owning side to null (unless already changed)
+            if ($rdv->getServices() === $this) {
+                $rdv->setServices(null);
             }
         }
 

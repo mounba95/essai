@@ -125,7 +125,7 @@ class VisiteRepository extends ServiceEntityRepository
         ->select('v')
             ->from('App\Entity\Visite' ,'v')
             ->innerJoin('v.users' , 'u')
-            ->where('u.id = :users')
+            ->where('u.id = :users and v.statue=1')
             ->setParameter('users',$users)
         ;
         return $query->getQuery()->getResult();

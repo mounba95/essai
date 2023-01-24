@@ -87,9 +87,7 @@
             </div>
         </div>
             <div class="card">
-                <div class="card-header">
-                    <h3 class="card-title">Liste des visiteur</h3>
-                </div>
+               
                 <div class="card-body" style="display: block;">
                 {% for message in app.flashes('desactive') %}
                 <div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -98,7 +96,7 @@
                     </button>
                     {{ message }}
                 </div>
-            {% endfor %} {% for message in app.flashes('active') %}
+                {% endfor %} {% for message in app.flashes('active') %}
                 <div class="alert alert-success alert-dismissible fade show" role="alert">
                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
@@ -146,35 +144,10 @@
                     {{ message }}
                 </div>
             {% endfor %}
-                    <table id="table_visiteur" class="table table-bordered table-striped">
-                        <thead>
-                        <tr>
-                            <th>Id</th>
-                            <th class="text-center">Nom</th>
-                            <th class="text-center">Prenom</th>
-                            <th class="text-center">Adresse</th>
-                            <th class="text-center">Telephone</th>
-                            <th class="text-center">Numero de piéce</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        {% for visiteur in visiteurs %}
-                            <tr>
-                                <td>{{ visiteur.id }}</td>
-                                <td>{{ visiteur.nomVisiteur }}</td>
-                                <td>{{ visiteur.prenomVisiteur }}</td>
-                                <td>{{ visiteur.adreeseVisiteur }}</td>
-                                <td>{{ visiteur.telVisiteur }}</td>
-                                <td>{{ visiteur.matricule }}</td>
-                            </tr>
-                        {% endfor %}
-                        </tbody>
-                    </table>
                 </div>
             </div>
-        </div>
     </section>
-    <div class="modal fade" id="myModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="myModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-body">

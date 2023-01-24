@@ -5,12 +5,12 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="m-0 text-dark">Visite</h1>
+                    <h1 class="m-0 text-dark">Rendez-vous</h1>
                 </div><!-- /.col -->
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="/accueil">Accueil</a></li>
-                        <li class="breadcrumb-item active">Visite</li>
+                        <li class="breadcrumb-item active">Rendez-vous</li>
                     </ol>
                 </div>
             </div>
@@ -21,70 +21,74 @@
     <section class="content">
         <div class="card card-default">
             <div class="card-header">
-                <h3 class="card-title">Formulaire de modification d'une visite</h3>
+                <h3 class="card-title">Formulaire de modification d'un rendez-vous</h3>
                 <div class="card-tools">
                     <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i>
                     </button>
                 </div>
             </div>
             <div class="card-body">
-                {{ form_start(form) }}
+                 {{ form_start(form) }}
                 <div class="row">
-                    <div class="col-md-4">
+                    <div class="col-md-6">
                         <div class="col-12 col-sm-10">
                             <div class="form-group">
-                                <label>Visiteur <span style="color: red;">*</span> :</label>
+                                <label>visiteur <span style="color: red;">*</span> :</label>
                                 <div class="select2-purple">
-                                    {{ form_widget(form.visiteurs, {'attr': {'class':'form-control select2 ','placeholder':'Saisir le nom de l\'utilisateur', 'required':true} }) }}
+                                    {{ form_widget(form.visiteurs, {'attr': {'class':'form-control select2 ','placeholder':'Saisir le nom de Rendez-vousur', 'required':true} }) }}
                                 </div>
                             </div>
                         </div>
                         <div class="col-12 col-sm-10">
                             <div class="form-group">
-                                <label>Motif <span style="color: red;">*</span> :</label>
+                                <label>Motif du Rendez-vous <span style="color: red;">*</span> :</label>
                                 <div class="select2-purple">
-                                    {{ form_widget(form.motif,{'attr': {'class':'form-control ','placeholder':'Saisir le prenom de l\'utilisateur', 'required':true} }) }}
+                                    {{ form_widget(form.motifrdv,{'attr': {'class':'form-control ','placeholder':'Saisir le motif de la Rendez-vous', 'required':true} }) }}
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="col-12 col-sm-10">
+                         <div class="col-12 col-sm-10">
                             <div class="form-group">
-                                <label>Type de visite <span style="color: red;">*</span> :</label>
+                            <label>Liste des personnels <span style="color: red;">*</span> :</label>
                                 <div class="select2-purple">
-                                    {{ form_widget(form.typeVisite, {'attr': {'class':'form-control ','placeholder':'Saisir le type de visite', 'required':true} }) }}
+                                    {{ form_widget(form.users, {'attr': {'class':'form-control select2 ','placeholder':'Veuillez selction le personnel', 'required':true} }) }}
                                 </div>
                             </div>
                         </div> 
-                        <br>
-                        <div class="col-12 col-sm-10">
-                            <div class="form-group">
-                                <label>Liste des personnel <span style="color: red;">*</span> :</label>
-                                        <div class="select2-purple">
-                                    {{ form_widget(form.users,{'attr': {'class':'form-control select2','placeholder':'Service', 'required':true} }) }}
-                                </div>
-                            </div>
-                        </div>
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-6">
                         <div class="col-12 col-sm-10">
                             <div class="form-group">
-                            <label>Liste des service <span style="color: red;">*</span> :</label>
+                            <label>Liste des services <span style="color: red;">*</span> :</label>
                                 <div class="select2-purple">
-                                    {{ form_widget(form.services, {'attr': {'class':'form-control select2','placeholder':'Service', 'required':true} }) }}
+                                    {{ form_widget(form.services, {'attr': {'class':'form-control select2 ','placeholder':'Veuillez selction le personnel', 'required':true} }) }}
                                 </div>
                             </div>
                         </div>
-                        <br>
-                            <br>
-                            <button type="submit" class="btn btn-primary ">Modifier</button>
-                            <a href="{{ path('liste_crer') }}">
-                            <button type="button" class="btn btn-danger ">Annuler</button>
-                            </a>
-                    
+                       <div class="col-lg-10 col-md-6 col-sm-6 col-xs-6">
+                            {{ form_label(form.daterdv, "Date du rendez-vous", {'label_attr': {'class': 'form-label'}}) }}
+                                <div class="form-group  form-float">
+                                    <div class="form-line">
+                                        {{ form_widget(form.daterdv, {'attr': {'class': 'form-control', 'placeholder':'Debut'} }) }}  {# Affichage des erreurs pour ce champ précis. #} {{ form_errors(form.daterdv)
+                                        }}
+                                    </div>
+                                </div>
+                        </div> 
+                        <div class="col-12 col-sm-10">
+                            <div class="form-group">
+                            <label>Type de rendez-vous <span style="color: red;">*</span> :</label>
+                                <div class="select2-purple">
+                                    {{ form_widget(form.typeRdv, {'attr': {'class':'form-control select2 ','placeholder':'Veuillez selction le personnel', 'required':true} }) }}
+                                </div>
+                            </div>
+                        </div>  
                     </div>
                 </div>
+
+           <button type="submit" class="btn btn-primary ">Modifier</button>
+                            <a href="{{ path('liste_rdv') }}">
+                            <button type="button" class="btn btn-danger ">Annuler</button>
+                            </a>
                 {{ form_end(form) }}
             </div>
         </div>                    <!-- /.row -->
@@ -92,7 +96,6 @@
                 <!-- /.card-body -->
                 <!-- Default box -->
                 <div class="card">
-                   
                     <div class="card-body p-0">
                         {% for message in app.flashes('register') %}
                             <div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -118,7 +121,7 @@
                             {{ message }}
                         </div>
                         {% endfor %}
-                        {% for message in app.flashes('visiteExiste') %}
+                        {% for message in app.flashes('Rendez-vousExiste') %}
                         <div class="alert alert-danger alert-dismissible fade show" role="alert">
                             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
@@ -147,14 +150,12 @@
                     </div>
                     <!-- /.card-body -->
                 </div>
-            </div>
-   
     </section>
     <div class="modal fade" id="myModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-body">
-                    <h4><b>Êtes-vous sûr de vouloir supprimer cette visite ?</b></h4>
+                    <h4><b>Êtes-vous sûr de vouloir supprimer cette Rendez-vous ?</b></h4>
                     <p>Cette action peut être annulée</p>
                 </div>
                 <div class="modal-footer">

@@ -2,13 +2,7 @@
     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
         <!-- Add icons to the links using the .nav-icon class
             with font-awesome or any other icon font library -->
-        <li class="nav-item has-treeview">
-            <a href="#" class="nav-link active">
-        <i class="fas fa-bars"></i>
-                <p>
-                <strong> MENU </strong>  
-                </p>
-            </a>
+      
         </li>
         {% if is_granted('ROLE_SUP') or is_granted('ROLE_ADMIN') %}
         <li class="nav-item">
@@ -39,25 +33,14 @@
                 <p class="text">Gestion des utilisateurs</p>
             </a>
         </li>
-        <li class="nav-item">
-        <a href="{{ path('user_actif') }}" class="nav-link">
-    <i class="far fa-circle nav-icon"></i>
-            <p class="text">Comptes Actifs</p>
-        </a>
-    </li>
-    <li class="nav-item">
-    <a href="{{ path('user_inactif') }}" class="nav-link">
-<i class="far fa-circle nav-icon"></i>
-        <p class="text">Comptes Inactifs</p>
-    </a>
-</li>
+        
 {% endif %}
 
         <li class="nav-item has-treeview">
             <a href="#" class="nav-link active">
                 <i class="nav-icon fas fa-users"></i>
                 <p>
-                    Visite
+                   Gestion des Visites
                 </p>
             </a>
         </li>
@@ -84,7 +67,7 @@
         <li class="nav-item">
             <a href="{{ path('allVisite') }}" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
-                <p>Liste de toute les visites</p>
+                <p>Historique des visites</p>
             </a>
         </li>
     {% endif %}
@@ -94,8 +77,47 @@
             <p>Mes visites</p>
             </a>
         </li>
-    
+     <li class="nav-item has-treeview">
+            <a href="#" class="nav-link active">
+                <i class="nav-icon fas fa-users"></i>
+                <p>
+                   Gestion des Rendez-vous
+                </p>
+            </a>
+        </li>
+        {% if is_granted('ROLE_SUP') or is_granted('ROLE_ADMIN') %}
+        <li class="nav-item">
+            <a href="{{ path('choisi_rdv') }}" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Créer un rendez-vous</p>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a href="{{ path('liste_rdv') }}" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>rendez-vous créée</p>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a href="{{ path('liste_annuler') }}" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>rendez-vous annuler</p>
+            </a>
+        </li>
+    {% endif %}
+        <li class="nav-item">
+            <a href="{{ path('liste_mesrdv') }}" class="nav-link">
+            <i class="far fa-circle nav-icon"></i>
+            <p>Mes rendez-vous</p>
+            </a>
+        </li>
     {% if is_granted('ROLE_SUP') or is_granted('ROLE_ADMIN') %}
+     <li class="nav-item">
+            <a href="{{ path('allrdv') }}" class="nav-link">
+            <i class="far fa-circle nav-icon"></i>
+            <p>Historique des rendez-vous</p>
+            </a>
+        </li>
         <li class="nav-item has-treeview">
             <a href="#" class="nav-link active">
                 <i class="nav-icon fas fa-table"></i>

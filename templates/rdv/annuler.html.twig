@@ -5,12 +5,12 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="m-0 text-dark">Visite</h1>
+                    <h1 class="m-0 text-dark">Rendez-vous Annuler</h1>
                 </div><!-- /.col -->
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="accueil">Accueil</a></li>
-                        <li class="breadcrumb-item active">Visite</li>
+                        <li class="breadcrumb-item"><a href="/accueil">Accueil</a></li>
+                        <li class="breadcrumb-item active">Rendez-vous Annuler</li>
                     </ol>
                 </div>
             </div>
@@ -18,17 +18,12 @@
     </div>
     <!-- /.card-header -->
     <!--suppress ALL -->
-    <section class="content">   
-    <!-- /.col -->
-                    <!-- /.row -->
-                    <!-- /.row -->
-                <!-- /.card-body -->
-                <!-- Default box -->
-                <div class="card">
-                   <div class="callout callout-info">
-                    <h5><i class="fas fa-info"></i> Note:</h5>
-                    Cet tableau presente les visites qui sont terminer.
-                </div>
+    <section class="content">
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-header">
+                        <h3 class="card-title">Liste des rendez-vous Annuler</h3>
+                    </div>
                     <div class="card-body p-0">
                         {% for message in app.flashes('register') %}
                             <div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -39,7 +34,7 @@
                             </div>
                         {% endfor %}
                         {% for message in app.flashes('suppression') %}
-                            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                            <div class="alert alert-danger alert-dismissible fade show" role="alert">
                                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
@@ -54,8 +49,17 @@
                             {{ message }}
                         </div>
                         {% endfor %}
-                        {% for message in app.flashes('fin') %}
+                        {% for message in app.flashes('rdvexiste') %}
                         <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                            {{ message }}
+                        </div>
+                        {% endfor %}
+            
+                        {% for message in app.flashes('fin') %}
+                        <div class="alert alert-success alert-dismissible fade show" role="alert">
                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -70,45 +74,46 @@
                                 {{ message }}
                             </div>
                         {% endfor %}
-                        <table id="table_fermer" class="table table-bordered table-striped">
+                        <table id="table_crer" class="table table-bordered table-striped">
                             <thead>
                             <tr>
                                 <th>Id</th>
                                 <th class="text-center">Type</th>
-                                <th class="text-center">Fin</th>
-                                <th class="text-center">Fermer</th>
-                                <th class="text-center">Service</th>
+                                <th class="text-center">Annuler par</th>
+                                <th class="text-center">Date d'annulation</th>
+                                <th class="text-center">Céer par</th>
+                                <th class="text-center">Sevices</th>
                                 <th class="text-center">Visiteur</th>
                                 <th class="text-center">Motif</th>
                                 <th class="text-center">Personnel</th>
-                                <th class="text-center">Statue</th>
-                            
+                                <th class="text-center">Statut</th>
                             </tr>
                             </thead>
                             <tbody>
-                            {% for visite in visites %}
+                            {% for rdv in rdvs %}
                                 <tr>
-                                    <td>{{ visite.id }}</td>
+                                    <td>{{ rdv.id }}</td>
                                     <td>
-                                            {% if visite.typeVisite == 1 %}
+                                            {% if rdv.typeRdv == 1 %}
                                                 Professionel
                                             {% else %}
                                                 Personnel
                                             {% endif %}
                                     </td>
-                                    <td>{{ visite.sortie | date('Y-m-d  H:i:s') }}</td>
-                                    <td>{{ visite.fermerPar }}</td>
-                                    <td>{{ visite.services }}</td>
-                                    <td>{{ visite.visiteurs }}</td>
-                                    <td>{{ visite.motif }}</td>
-                                    <td>{{ visite.users }}</td>
+                                     <td>{{ rdv.fermerPar}}</td>
+                                     <td>{{ rdv.dateAnnuler | date('Y-m-d  H:i:s') }}</td>
+                                    <td>{{ rdv.crerpar }}</td>
+                                    <td>{{ rdv.services }}</td>
+                                    <td>{{ rdv.visiteurs }}</td>
+                                    <td>{{ rdv.motifrdv }}</td>
+                                    <td>{{ rdv.users }}</td>
                                     <td>
-                                        {% if visite.statue == 1 %}
-                                                <span class="badge bg-success">visite encour</span>
+                                        {% if rdv.statut == 1 %}
+                                                <span class="badge bg-success">Programmer</span>
                                         
                                         {% else %}
 
-                                            <span class="badge bg-danger">Terminer</span>
+                                            <span class="badge bg-danger">Annuler</span>
                                         
                                         {% endif %}
                                     </td>
@@ -127,7 +132,7 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-body">
-                    <h4><b>Êtes-vous sûr de vouloir supprimer cette visite ?</b></h4>
+                    <h4><b>Êtes-vous sûr de vouloir supprimer cet rendez-vous ?</b></h4>
                     <p>Cette action peut être annulée</p>
                 </div>
                 <div class="modal-footer">
@@ -137,5 +142,4 @@
             </div>
         </div>
     </div>
-
 {% endblock %}

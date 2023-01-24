@@ -20,22 +20,18 @@
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 </head>
 <body class="hold-transition login-page">
-
-<img src="{{asset('dist/img/logo.png')}}"  class="brand-image elevation-8">
 <div class="login-box">
     <div class="login-logo">
-        <a href="#" class="h3"><strong>Republique du Niger</strong></a>
-    </div>
-    <!-- /.login-logo -->
-    <div class="card">
-    <div class="card card-outline card-primary">
-    <div class="card-header text-center">
-      <a href="#" class="h1"><b>DGEC</b>/mr</a>  
-    </div>
-    <div class="card-body">
-      <p class="login-box-msg">Formulaire D'authentification</p>
-
-      <form method="post">
+        <img src="{{asset('dist/img/logo.png')}}"  class="brand-image elevation-8"> 
+    </div> 
+        <a href="#" class="h3"><p class="text-center"><strong>Republique du Niger</strong></p></a>
+        <div class="card card-outline card-primary">
+            <div class="card-header text-center">
+                 <a href="#" class="h1"><b>dgec</b>/mr</a>  
+            </div>
+            <div class="card-body">
+                <p class="login-box-msg"><strong> Formulaire D'authentification</strong></p>
+            <form method="post">
                 {% if error %}
                     <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
                 {% endif %}
@@ -74,12 +70,11 @@
                     <!-- /.col -->
                 </div>
             </form>
-    <!-- /.card-body -->
-  </div>
-  <!-- /.card -->
-</div>
+                <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+        </div>
         <!-- /.login-card-body -->
-    </div>
 </div>
 <!-- /.login-box -->
 
