@@ -137,7 +137,7 @@ class Visiteur
      */
     public function __toString()
     {
-        return $this->nomVisiteur.' '.$this->prenomVisiteur.' '.$this->telVisiteur;
+        return $this->nomVisiteur.' '.$this->prenomVisiteur;
     }
 
     /**

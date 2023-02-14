@@ -23,9 +23,10 @@
                 <div class="card-header">
                     <div class="card-header">
                        <div class="callout callout-info">
-                        <h5><i class="fas fa-info"></i> Note:</h5>
-                        Cet tableau détaille les information sur le rendez-vous.
-                    </div>
+                            <h5><i class="fas fa-info"></i> Note:</h5>
+                            Le rendez-vous de monsieur {{rdv.visiteurs}}  est programmer pour le {{ rdv.daterdv| date('Y-m-d à H:i:s')}}
+                        </div>.
+
                         <div class="float-right">
                     <a href="{{ path('liste_rdv',{'id':rdv.id}) }}" onclick="javascript:history.back();"  class="btn btn-success ">liste des rendez-vous</a> 
                 </div>
@@ -84,7 +85,7 @@
                         <div class="col-md-9">
                         <table id="table_crer" class="table table-bordered table-striped">
                                 <tr>
-                                    <th>Type de la rdv</th>   
+                                    <th>Type du rendez-vous</th>   
                                     <td>
                                         {% if rdv.typeRdv == 1 %}
                                             Professionel
@@ -93,21 +94,21 @@
                                         {% endif %}
                                     </td>
                                
-                                <th>Debut de la rdv</th>   <td>{{ rdv.daterdv  |date('d-m-Y H:i:s')}}</td>
+                                <th>la date du rende-vous</th>   <td>{{ rdv.daterdv  |date('d-m-Y H:i:s')}}</td>
                                 </tr>
                                 <tr>   
                                     {% if rdv.typeRdv == 2 %} 
-                                <th>Personnel rdvr</th>     <td>{{ rdv.users }}</td> 
+                                <th>La personne Visiter</th>     <td>{{ rdv.users }}</td> 
                                         {% else %} 
-                                <th>Services visité</th>    <td>{{ rdv.services }}</td>
+                                <th>Le service Visiter</th>    <td>{{ rdv.services }}</td>
                                     {% endif %}
                                
                                 <th>visiteurs</th>   <td>{{ rdv.visiteurs }}</td>
                                 </tr>
                                 <tr>  
-                                <th>Motif de la rdv</th>    <td>{{ rdv.motifrdv }}</td>
+                                <th>Motif du rendez-vous</th>    <td>{{ rdv.motifrdv }}</td>
                                
-                                <th>Créé par</th>   <td>{{ rdv.crerPar }}</td>
+                                <th>La personne qui à créer le rendez-vous</th>   <td>{{ rdv.crerPar }}</td>
                                 </tr>
                             <tr>
                             <th></th><td></td>
